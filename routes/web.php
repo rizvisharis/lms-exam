@@ -18,6 +18,12 @@ Route::get('/', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::prefix('exam')
+    ->middleware(['auth', 'verified'])
+    ->group(function () {
+    Route::view('/', 'exam.index')->name('exam.index');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
