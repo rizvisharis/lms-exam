@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +22,7 @@ Route::get('/', function () {
 Route::prefix('exam')
     ->middleware(['auth', 'verified'])
     ->group(function () {
-    Route::view('/', 'exam.index')->name('exam.index');
+    Route::get('/', [TestController::class, 'index'])->name('exam.index');
 });
 
 Route::middleware('auth')->group(function () {
