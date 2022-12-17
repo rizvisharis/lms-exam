@@ -24,7 +24,7 @@ class TestFactory extends Factory
             'answer3' => fake()->sentence,
             'answer4' => fake()->sentence,
             'answer5' => fake()->sentence,
-            'correct_answer' => fake()->sentence,
+            'correct_answer' => fake()->numberBetween(1, 5),
         ];
     }
 }

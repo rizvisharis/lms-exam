@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\TestResource;
+use App\Models\Result;
 use App\Models\Test;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class TestController extends Controller
 {
@@ -38,7 +41,29 @@ class TestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $userInputs = $request->all();
+        $points = 0;
+        $totalQuestion = 50;
+
+        foreach ($userInputs as $key => $value) {
+            if (is_numeric($key)) {
+                $question = Test::find($key);
+
+                if ($question->correct_answer == $value) {
+                    $points++;
+                }
+            }
+        }
+
+        $percentage = ($points / $totalQuestion) * 100;
+
+        Result::create([
+            'user_id' => Auth::id(),
+            'score' => $percentage
+        ]);
+
+        return Redirect::route('dashboard')->with('message', 'test submitted sucessfully');
     }
 
     /**
