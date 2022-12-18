@@ -23,6 +23,11 @@ class TestController extends Controller
         return view('exam.index', ['questions' => $questionsResource]);
     }
 
+    public function startExam()
+    {
+        return view('exam.start-exam');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -63,7 +68,7 @@ class TestController extends Controller
             'score' => $percentage
         ]);
 
-        return Redirect::route('dashboard')->with('message', 'test submitted sucessfully');
+        return Redirect::route('dashboard')->with('examSubmitted', 'test submitted sucessfully');
     }
 
     /**

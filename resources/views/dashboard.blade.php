@@ -14,4 +14,7 @@
             </div>
         </div>
     </div>
+
+    @include('inc.submit-sucessful')
+
 </x-app-layout>

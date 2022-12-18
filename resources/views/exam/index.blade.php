@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <div class="container mx-auto px-4">
+    <div class="container max-w-7xl mx-auto sm:px-6 lg:px-8">
 
         <form action="{{route("exam.store")}}" method="post">
            {{csrf_field()}}

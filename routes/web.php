@@ -23,6 +23,7 @@ Route::prefix('exam')
     ->middleware(['auth', 'verified'])
     ->group(function () {
     Route::get('/', [TestController::class, 'index'])->name('exam.index');
+    Route::get('/start', [TestController::class, 'startExam'])->name('exam.start');
     Route::post('/', [TestController::class, 'store'])->name('exam.store');
 });
 
