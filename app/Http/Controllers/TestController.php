@@ -18,6 +18,9 @@ class TestController extends Controller
      */
     public function index()
     {
+        if (Result::where('user_id', Auth::id())->first()) {
+            return Redirect::route('dashboard')->with('takenExam', 'You already taken the exam');
+        }
         $questions = Test::paginate(10);
         $questionsResource = TestResource::collection($questions);
         return view('exam.index', ['questions' => $questionsResource]);
