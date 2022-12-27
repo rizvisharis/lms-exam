@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\TestResource;
 use App\Models\Result;
+use App\Models\Student;
 use App\Models\Test;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -47,7 +49,7 @@ class TestController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
 
         $userInputs = $request->all();
@@ -72,6 +74,20 @@ class TestController extends Controller
         ]);
 
         return Redirect::route('dashboard')->with('examSubmitted', 'test submitted sucessfully');
+    }
+
+    public function registerExam(int $subjectId): RedirectResponse
+    {
+        if (Student::where([['user_id', Auth::id()], ['subject_id', $subjectId]])->first()) {
+            return Redirect::route('dashboard')->with('alreadyRegister', 'You already register the exam');
+        }
+
+        Student::create([
+            'user_id' => Auth::id(),
+            'subject_id' => $subjectId,
+        ]);
+
+        return Redirect::route('dashboard')->with('registerExam', 'The Exam register successfully');
     }
 
     /**

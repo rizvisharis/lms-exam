@@ -60,8 +60,8 @@
                                 <p class="text-gray-600 whitespace-no-wrap">Due in 3 days</p>
                             </td>
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-gray-900 text-center">
-                                @if($subject->exam_start > \Carbon\Carbon::now())
-                                <a href="{{route('exam.index')}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                                @if($subject->exam_end > \Carbon\Carbon::now())
+                                <a href="{{route('exam.register', ['subject_id' => $subject->id])}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                                     {{__('Register')}}
                                 </a>
                                 @endif

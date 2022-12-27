@@ -20,7 +20,7 @@ class SubjectFactory extends Factory
         $start_date = fake()->dateTimeBetween('-5 days');
 
         return [
-            'name' => fake()->userName(),
+            'name' => fake()->randomElement(['Maths', 'Science', 'Physics', 'Arab', 'History', 'English']),
             'exam_availability' => fake()->boolean,
             'exam_start' => $start_date,
             'exam_end' => Carbon::create($start_date)->addWeek()->toDateTime(),
