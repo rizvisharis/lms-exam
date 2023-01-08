@@ -18,13 +18,19 @@ class TestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(int $subjectId)
     {
+        if (! Student::where([['user_id', Auth::id()], ['subject_id', $subjectId]])->first()) {
+            return Redirect::route('dashboard')->with('alreadyRegister', 'You not register the exam');
+        }
+
         if (Result::where('user_id', Auth::id())->first()) {
             return Redirect::route('dashboard')->with('takenExam', 'You already taken the exam');
         }
-        $questions = Test::paginate(10);
+
+        $questions = Test::where('subject_id', $subjectId)->paginate(10);
         $questionsResource = TestResource::collection($questions);
+
         return view('exam.index', ['questions' => $questionsResource]);
     }
 
@@ -70,7 +76,8 @@ class TestController extends Controller
 
         Result::create([
             'user_id' => Auth::id(),
-            'score' => $percentage
+            'score' => $percentage,
+            'subject_id' => $question->subject_id,
         ]);
 
         return Redirect::route('dashboard')->with('examSubmitted', 'test submitted sucessfully');

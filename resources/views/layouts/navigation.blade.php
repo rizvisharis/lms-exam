@@ -16,9 +16,9 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('exam.start')" :active="request()->routeIs('exam.start')">
-                        {{ __('Exam') }}
-                    </x-nav-link>
+{{--                    <x-nav-link :href="route('exam.start')" :active="request()->routeIs('exam.start')">--}}
+{{--                        {{ __('Exam') }}--}}
+{{--                    </x-nav-link>--}}
                 </div>
             </div>
 
@@ -74,9 +74,9 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('exam.index')" :active="request()->routeIs('exam.index')">
-                {{ __('Exam') }}
-            </x-responsive-nav-link>
+{{--            <x-responsive-nav-link :href="route('exam.index')" :active="request()->routeIs('exam.index')">--}}
+{{--                {{ __('Exam') }}--}}
+{{--            </x-responsive-nav-link>--}}
         </div>
 
         <!-- Responsive Settings Options -->

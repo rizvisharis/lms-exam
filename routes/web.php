@@ -21,7 +21,7 @@ Route::get('/', [DashboardController::class, 'index'])->middleware(['auth', 'ver
 Route::prefix('exam')
     ->middleware(['auth', 'verified'])
     ->group(function () {
-    Route::get('/', [TestController::class, 'index'])->name('exam.index');
+    Route::get('/{subject_id}', [TestController::class, 'index'])->name('exam.index');
     Route::get('/start', [TestController::class, 'startExam'])->name('exam.start');
     Route::post('/', [TestController::class, 'store'])->name('exam.store');
     Route::get('/register/{subject_id}', [TestController::class, 'registerExam'])->name('exam.register');

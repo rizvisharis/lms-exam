@@ -68,7 +68,7 @@
                             </td>
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-gray-900 text-center">
                                 @if(($subject->exam_start < \Carbon\Carbon::now()) && $subject->exam_end > \Carbon\Carbon::now() )
-                                <a href="{{route('exam.index')}}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+                                <a href="{{route('exam.index', ['subject_id' => $subject->id])}}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
                                     {{__('Start Exam')}}
                                 </a>
                                 @endif

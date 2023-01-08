@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Subject;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,6 +19,7 @@ class TestFactory extends Factory
     {
         return [
             'name' => fake()->title(),
+            'subject_id' => Subject::inRandomOrder()->first()->id,
             'question' => fake()->text,
             'answer1' => fake()->sentence,
             'answer2' => fake()->sentence,
